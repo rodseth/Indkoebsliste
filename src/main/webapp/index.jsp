@@ -14,6 +14,9 @@
 
 <h2>Velkommen til din online indkøbsliste!</h2>
 
+${requestScope.besked}
+<br>
+
 <form action="LogInServlet" method="post">
     <label for="fname">Navn:</label><br>
     <input type="text" id="fname" name="navn"><br>
