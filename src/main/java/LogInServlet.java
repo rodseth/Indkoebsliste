@@ -29,8 +29,8 @@ public class LogInServlet extends HttpServlet {
         if (!((Map<String, String>)servletContext.getAttribute("brugerMap")).containsKey(navn)) {
 
             //todo gå til log-ind-siden
-            request.setAttribute("besked", "Brugernavnet findes ikke");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.setAttribute("besked", "Det brugernavn du tastet ind findes ikke, her kan du opprette dig som bruger");
+            request.getRequestDispatcher("WEB-INF/OpretBruger.jsp").forward(request, response);
         }
 
         if (((Map<String, String>)servletContext.getAttribute("brugerMap")).get(navn).equalsIgnoreCase(kodeord)) {
