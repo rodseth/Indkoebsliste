@@ -11,8 +11,8 @@
     <title>Huskeliste</title>
 </head>
 <body>
-<h1>Du er nu logget ind på din huskeliste</h1>
-<h2>Her kan du tilføye emner</h2>
+<h1>Du er nu logget ind på Maris første webshop</h1>
+<h2>Her kan du tilføye emner til din inkøbskurv</h2>
 
 
 
