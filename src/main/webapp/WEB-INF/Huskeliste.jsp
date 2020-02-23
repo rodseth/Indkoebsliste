@@ -11,8 +11,12 @@
     <title>Huskeliste</title>
 </head>
 <body>
-<h1>Du er nu logget ind på Maris første webshop</h1>
-<h2>Her kan du tilføye emner til din inkøbskurv</h2>
+
+${sessionScope.besked}
+<br>
+<br>
+<h1>Velkommen til Maris første webshop</h1>
+<h3>På denne siden tilføye emner til din inkøbskurv</h3>
 
 
 

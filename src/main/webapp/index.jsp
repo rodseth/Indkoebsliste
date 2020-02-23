@@ -14,6 +14,8 @@
 
 <h2>Velkommen til Maris første webshop!</h2>
 
+${sessionScope.besked}
+
 ${requestScope.besked}
 <br>
 
