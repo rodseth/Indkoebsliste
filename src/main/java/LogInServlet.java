@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 @WebServlet(name = "LogInServlet", urlPatterns = "/LogInServlet")
 public class LogInServlet extends HttpServlet {
@@ -24,13 +26,25 @@ public class LogInServlet extends HttpServlet {
 
             Map<String, String> brugerMap = new HashMap<>();
 
-            brugerMap.put("test","test");
+            brugerMap.put("Mari","1234");
             brugerMap.put("admin","1234");
 
             servletContext.setAttribute("brugerMap", brugerMap);
 
         }
 
+        if(((Set<String>)servletContext.getAttribute("aktiveBrugere"))== null) {
+
+            Set<String> aktiveBrugere = new HashSet<>();
+            servletContext.setAttribute("aktiveBrugere", aktiveBrugere);
+
+        }
+
+        if (!(session.getAttribute("besked") == null) ) {
+            request.getRequestDispatcher("WEB-INF/Huskeliste.jsp").forward(request, response );
+
+
+        }
 
         if (!((Map<String, String>)servletContext.getAttribute("brugerMap")).containsKey(navn)) {
 
@@ -46,12 +60,19 @@ public class LogInServlet extends HttpServlet {
 
             }
 
-            session.setAttribute("besked", "Du er logget inn med følgende brugernavn: " + navn);
-            request.getRequestDispatcher("WEB-INF/Huskeliste.jsp").forward(request, response);
-        }
-        //todo gå til log ind (dvs index-side
+            if(!((Set<String>)servletContext.getAttribute("aktiveBrugere")).contains(navn)) {
 
-        request.setAttribute("besked", "Du har tastet fejl kodeord, venligst prøv igen");
+                ((Set<String>)servletContext.getAttribute("aktiveBrugere")).add(navn);
+
+                session.setAttribute("besked", "Du er logget inn med følgende brugernavn: " + navn);
+                session.setAttribute("navn",  navn);
+
+                request.getRequestDispatcher("WEB-INF/Huskeliste.jsp").forward(request, response);
+            }
+        }
+        //todo gå til login (dvs index-side
+
+        request.setAttribute("besked", "Du har tastet fejl kodeord eller er allerede logget ind et annet sted, venligst prøv igen");
         request.getRequestDispatcher("index.jsp").forward(request, response);
 
     }
